@@ -1539,7 +1539,8 @@ string_t message::parse_address_name(const string& address_name) const
                 encoding = std::get<1>(an);
                 decoded += std::get<0>(an);
                 start = end + codec::ENCODING_END.length();
-                while (start < addr_len && (address_name[start] == ' ' || address_name[start] == '\r' || address_name[start] == '\n'))
+                while (start < addr_len &&
+                    (address_name[start] == codec::SPACE_CHAR || address_name[start] == codec::CR_CHAR || address_name[start] == codec::LF_CHAR))
                 {
                     start++;
                 }
