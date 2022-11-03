@@ -1511,9 +1511,8 @@ tuple<string, string> message::parse_subject(const string& subject) const
 string_t message::parse_address_name(const string& address_name) const
 {
     q_codec qc(_line_policy, _decoder_line_policy);
-    const string::size_type Q_CODEC_SEPARATORS_NO = 4;
     string::size_type addr_len = address_name.size();
-    size_t start = 0, pos = 0;
+    size_t start = 0;
     string decoded;
     string encoding;
     while (start < addr_len)
