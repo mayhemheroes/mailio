@@ -1535,10 +1535,8 @@ string_t message::parse_address_name(const string& address_name) const
                     string err = ss.str();
                     throw message_error(err);
                 }
-                else
-                {
-                    encoding = std::get<1>(an);
-                }
+                
+                encoding = std::get<1>(an);
                 decoded += std::get<0>(an);
                 start = end + codec::ENCODING_END.length();
                 while (start < addr_len && (address_name[start] == ' ' || address_name[start] == '\r' || address_name[start] == '\n'))
