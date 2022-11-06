@@ -1529,12 +1529,7 @@ string_t message::parse_address_name(const string& address_name) const
             {
         	auto an = qc.decode(address_name.substr(pos, end - pos));
                 if (!encoding.empty() && (encoding != std::get<1>(an)))
-                {
-                    stringstream ss;
-                    ss << "Encoding does not match `" << address_name[start] << "` in \"" << address_name << "\" (pos=" << start << ").";
-                    string err = ss.str();
-                    throw message_error(err);
-                }
+                    throw message_error("Encodings do not match");
                 
                 encoding = std::get<1>(an);
                 decoded += std::get<0>(an);
