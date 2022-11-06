@@ -1512,19 +1512,19 @@ string_t message::parse_address_name(const string& address_name) const
 {
     q_codec qc(_line_policy, _decoder_line_policy);
     string::size_type addr_len = address_name.size();
-    size_t start = 0;
+    string::size_type start = 0;
     string decoded;
     string encoding;
     while (start < addr_len)
     {
-        size_t pos = address_name.find(codec::ENCODING_START, start);
+        string::size_type pos = address_name.find(codec::ENCODING_START, start);
         if (pos != string::npos)
         {
             if (pos > start)
             {
                 decoded += address_name.substr(start, pos - start);
             }
-            size_t end = address_name.find(codec::ENCODING_END, pos);
+            string::size_type end = address_name.find(codec::ENCODING_END, pos);
             if (end != string::npos)
             {
         	auto an = qc.decode(address_name.substr(pos, end - pos));
