@@ -1533,10 +1533,11 @@ string_t message::parse_address_name(const string& address_name) const
                 encoding = std::get<1>(an);
                 decoded += std::get<0>(an);
                 start = end + codec::ENCODING_END.length();
-                char addr_start = address_name[start];
-                while (start < addr_len && (addr_start == codec::SPACE_CHAR || addr_start == codec::CR_CHAR || addr_start == codec::LF_CHAR))
+                while (start < addr_len &&
+                    (address_name[start] == codec::SPACE_CHAR || address_name[start] == codec::CR_CHAR || address_name[start] == codec::LF_CHAR))
+                {
                     start++;
-                continue;
+                }
             }
             else
             {
