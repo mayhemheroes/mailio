@@ -1521,24 +1521,21 @@ string_t message::parse_address_name(const string& address_name) const
         if (pos != string::npos)
         {
             if (pos > start)
-            {
                 decoded += address_name.substr(start, pos - start);
-            }
+
             string::size_type end = address_name.find(codec::ENCODING_END, pos);
             if (end != string::npos)
             {
         	auto an = qc.decode(address_name.substr(pos, end - pos));
-                if (!encoding.empty() && (encoding != std::get<1>(an)))
+                if (!encoding.empty() && encoding != std::get<1>(an))
                     throw message_error("Encodings do not match");
                 
                 encoding = std::get<1>(an);
                 decoded += std::get<0>(an);
                 start = end + codec::ENCODING_END.length();
-                while (start < addr_len &&
-                    (address_name[start] == codec::SPACE_CHAR || address_name[start] == codec::CR_CHAR || address_name[start] == codec::LF_CHAR))
-                {
+                char addr_start = address_name[start];
+                while (start < addr_len && (addr_start == codec::SPACE_CHAR || addr_start == codec::CR_CHAR || addr_start == codec::LF_CHAR))
                     start++;
-                }
                 continue;
             }
             else
@@ -1560,9 +1557,7 @@ string_t message::parse_address_name(const string& address_name) const
             return string_t(decoded, codec::CHARSET_ASCII);
     }
     else
-    {
         return string_t(decoded, encoding);
-    }
 }
 
 
