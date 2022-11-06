@@ -1540,7 +1540,7 @@ string_t message::parse_address_name(const string& address_name) const
             }
             else
             {
-                //do nothing, fall through
+                throw message_error("No Q codec end marker.");
             }
         }
         decoded += address_name.substr(start);
