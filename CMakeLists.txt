@@ -8,6 +8,10 @@ if(NOT DEFINED LIB_SUFFIX)
   set(LIB_SUFFIX "" CACHE STRING "Suffix for installed library path. Ex. 64 for lib64")
 endif(NOT DEFINED LIB_SUFFIX)
 
+if (BUILD_FUZZ_TARGETS)
+    add_subdirectory(fuzz)
+endif()
+
 # Set bindir, if not use -DBIN_INSTALL_DIR
 if(NOT BIN_INSTALL_DIR)
   if(CMAKE_INSTALL_BINDIR)
