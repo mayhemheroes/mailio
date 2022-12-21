@@ -129,7 +129,7 @@ imap::search_condition_t::search_condition_t(imap::search_condition_t::key_type 
                 break;
 
             case UNSEEN:
-                imap_string = "UNSEEN ";
+                imap_string = "UNSEEN";
                 break;
 
             default:
