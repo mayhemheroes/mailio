@@ -1,0 +1,6 @@
+project: mailio
+target: fuzz_quoted_printable_encode
+
+cmds:
+  - cmd: /fuzz_binaries/fuzz_quoted_printable_encode
+    libfuzzer: true

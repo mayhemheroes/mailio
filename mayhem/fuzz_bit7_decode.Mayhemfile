@@ -1,0 +1,6 @@
+project: mailio
+target: fuzz_bit7_decode
+
+cmds:
+  - cmd: /fuzz_binaries/fuzz_bit7_decode
+    libfuzzer: true
