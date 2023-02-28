@@ -1,0 +1,6 @@
+project: mailio
+target: fuzz_base64_decode
+
+cmds:
+  - cmd: /fuzz_binaries/fuzz_base64_decode
+    libfuzzer: true
